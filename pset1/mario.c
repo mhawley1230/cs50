@@ -15,7 +15,6 @@ int main(void)
     {
         for (int j = 0; j < height; j++)
         {
-            // printf("height: %i, i: %i j: %i\n", height, i, j);
             if (i + j < height - 1)
             {
                 printf(" ");
@@ -30,8 +29,11 @@ int main(void)
         
         for (int k = 0; k < height; k++)
         {
-            if (height - k > 4)
-            printf("#");
+            // printf("k is %i, ", k);
+            if (k <= i)
+            {
+                printf("#");
+            }
         }
         printf("\n");
     }
