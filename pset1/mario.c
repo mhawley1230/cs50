@@ -8,6 +8,10 @@ int main(void)
     {
         printf("Height: ");
         height = get_int();
+        if (height == 0)
+        {
+            return 0;
+        }
     }
     while (height < 1 || height > 23);
     
@@ -15,7 +19,6 @@ int main(void)
     {
         for (int j = 0; j < height; j++)
         {
-            // printf("height: %i, i: %i j: %i\n", height, i, j);
             if (i + j < height - 1)
             {
                 printf(" ");
@@ -30,8 +33,10 @@ int main(void)
         
         for (int k = 0; k < height; k++)
         {
-            if (height - k > 4)
-            printf("#");
+            if (k <= i)
+            {
+                printf("#");
+            }
         }
         printf("\n");
     }
