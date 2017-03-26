@@ -2,10 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+#define ALPHABET_LENGTH 26
+#define START_OF_UPPER_ALPHABET 65
+#define START_OF_LOWER_ALPHABET 97
 
 int main(int argc, string argv[])
 {
-    // error for incorrect number of command-line arguments
     if (argc != 2)
     {
         printf("Usage: ./caesar k");
@@ -16,33 +19,27 @@ int main(int argc, string argv[])
     string s = get_string();
     
     printf("ciphertext: ");
-    
-    // convert string argv[1] to int
     int k = atoi(argv[1]);
-    
+
     for (int i = 0, n = strlen(s); i < n; i++)
     {
         char l = s[i];
-        // if letter is capital
-        if (l >= 'A' && l <= 'Z')
+        int offset = 0;
+        if (isalpha(l))
         {
-            // condition for wrapping capital alphabet
-            while (l + k > 'Z')
+            if (l >= START_OF_UPPER_ALPHABET && l <= START_OF_UPPER_ALPHABET + ALPHABET_LENGTH)
             {
-                l -= 26;
+                offset = l - START_OF_UPPER_ALPHABET;
+                l = (offset + k)  % ALPHABET_LENGTH;
+                printf("%c", l + START_OF_UPPER_ALPHABET);
+            } 
+            else
+            {
+                offset = l - START_OF_LOWER_ALPHABET;
+                l = (offset + k)  % ALPHABET_LENGTH;
+                printf("%c", l + START_OF_LOWER_ALPHABET);
             }
-            printf("%c", l + k);
         }
-        // if letter is lowercase
-        else if (l >= 'a' && l <= 'z')
-        {
-            // condition for wrapping lowercase alphabet
-            while (l + k > 'z')
-            {
-                l -= 26;
-            }
-            printf("%c", l + k);
-        }    
         else
         {
             printf("%c", l);
