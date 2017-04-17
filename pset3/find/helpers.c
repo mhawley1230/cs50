@@ -19,6 +19,15 @@ bool search(int value, int values[], int n)
 {
     // TODO: implement a searching algorithm
     
+    // linear search
+    for (int i = 0; i < n; i++)
+    {
+        if (value == values[i])
+        {
+            return true;
+        }
+    }
+    
     return false;
 }
 
@@ -28,6 +37,8 @@ bool search(int value, int values[], int n)
 void sort(int values[], int n)
 {
     // TODO: implement an O(n^2) sorting algorithm
+    
+    // bubble sort
     
     // set swap counter to non-zero number
     int swap_count = -1;
