@@ -20,12 +20,45 @@ bool search(int value, int values[], int n)
     // TODO: implement a searching algorithm
     
     // linear search
-    for (int i = 0; i < n; i++)
+    // for (int i = 0; i < n; i++)
+    // {
+    //     if (value == values[i])
+    //     {
+    //         return true;
+    //     }
+    // }
+    
+    // binary search
+    int first, last, middle;
+    
+    // first index, 0
+    first = 0;
+    // last index, length - 1
+    last = n - 1;
+    // average index
+    middle = (first + last) / 2;
+    
+    while (first <= last)
     {
-        if (value == values[i])
+        
+        if (values[middle == value])
         {
             return true;
         }
+        else if (values[middle] < value)
+        {
+            first = middle + 1;
+        }
+        else if (values[middle] > value)
+        {
+            last = middle - 1;
+        }
+        else
+        {
+            break;
+        }
+        
+        middle = (first + last) / 2;
     }
     
     return false;
