@@ -29,27 +29,22 @@ bool search(int value, int values[], int n)
     // }
     
     // binary search
-    int first, last, middle;
-    
-    // first index, 0
-    first = 0;
-    // last index, length - 1
-    last = n - 1;
-    // average index
-    middle = (first + last) / 2;
+    int first = 0;
+    int last = last = n - 1, middle;                                                                                                         
     
     while (first <= last)
     {
+        middle = (first + last) / 2;
         
-        if (values[middle == value])
+        if (values[middle] == value)
         {
             return true;
         }
-        else if (values[middle] < value)
+        else if (values[middle] > value)
         {
             first = middle + 1;
         }
-        else if (values[middle] > value)
+        else if (values[middle] < value)
         {
             last = middle - 1;
         }
@@ -57,8 +52,6 @@ bool search(int value, int values[], int n)
         {
             break;
         }
-        
-        middle = (first + last) / 2;
     }
     
     return false;
