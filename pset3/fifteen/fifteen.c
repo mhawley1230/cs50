@@ -156,22 +156,30 @@ void greet(void)
  */
 void init(void)
 {
-    // TODO
-    // int j = column, i = row;
+    // int i = column, j = row;
     // int board[column][row];
-    
-    int count = 1;
+    int count = d * d - 1;
     for (int i = 0; i < d; i++)
     {
         for(int j = 0; j < d; j++)
         {
-            do
+            if(count > 0)
             {
-                board[j][i] = count;
-                count++;
+                board[i][j] = count;
+                count--;
             }
-            while (count < (d * d) - 1);
+            else
+            {
+                board[i][j] = (char)"_";
+            }
         }
+    }
+    
+    if(d % 2 == 0)
+    {
+        int swap = board[d - 1][d - 2];
+        board[d - 1][d - 3] = board[d - 1][d - 2];
+        board[d - 1][d - 3] = swap;
     }
 }
 
@@ -180,8 +188,15 @@ void init(void)
  */
 void draw(void)
 {
-    // TODO
-    for 
+    printf("Max value of board: %d\n", d * d - 1);
+    for(int i = 0; i < d; i++)
+    {
+        for(int j = 0; j < d; j++)
+        {
+            printf("  %i ", board[i][j]);
+        }
+        printf("\n");
+    }
 }
 
 /**
