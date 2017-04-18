@@ -159,7 +159,7 @@ void init(void)
     // int i = column, j = row;
     // int board[column][row];
     int count = d * d - 1;
-    for (int i = 0; i < d; i++)
+    for(int i = 0; i < d; i++)
     {
         for(int j = 0; j < d; j++)
         {
@@ -188,18 +188,13 @@ void draw(void)
     {
         for(int j = 0; j < d; j++)
         {
-            if (d >= 4 && board[i][j] <= 9)
+            if(board[i][j] == 0)
             {
-                printf(" ");
-            }
-            
-            if (board[i][j] == 0)
-            {
-                printf(" _ ");
+                printf("  _ ");
             }
             else
             {
-                printf(" %i ", board[i][j]);
+                printf(" %2i ", board[i][j]);
             }
         }
         printf("\n");
@@ -212,7 +207,31 @@ void draw(void)
  */
 bool move(int tile)
 {
-    // TODO
+    int i, j, blank;
+    for( i = 0; i < d; i++)
+    {
+        for(j = 0; j < d; j++)
+        {
+            if(blank == board[i][j])
+            {
+                blank = board[i][j];
+            }
+            
+            if(tile == board[i][j])
+            {
+                tile = board[i][j];
+            }
+        }
+    }
+    
+    if(board[i + 1][j] == blank || board[i - 1][j] || board[i][j + 1] || board[i][j - 1])
+    {
+        int swap = tile;
+        tile = blank;
+        blank = swap;
+        return true;
+    }
+    
     return false;
 }
 
