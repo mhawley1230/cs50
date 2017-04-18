@@ -171,12 +171,12 @@ void init(void)
         }
     }
     
-    // if(d % 2 == 0)
-    // {
-    //     int swap = board[d - 1][d - 2];
-    //     board[d - 1][d - 3] = board[d - 1][d - 2];
-    //     board[d - 1][d - 3] = swap;
-    // }
+    if(d % 2 == 0)
+    {
+        int swap = board[d - 1][d - 2];
+        board[d - 1][d - 2] = board[d - 1][d - 3];
+        board[d - 1][d - 3] = swap;
+    }
 }
 
 /**
