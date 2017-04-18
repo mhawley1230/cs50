@@ -168,19 +168,15 @@ void init(void)
                 board[i][j] = count;
                 count--;
             }
-            else
-            {
-                board[i][j] = (char)"_";
-            }
         }
     }
     
-    if(d % 2 == 0)
-    {
-        int swap = board[d - 1][d - 2];
-        board[d - 1][d - 3] = board[d - 1][d - 2];
-        board[d - 1][d - 3] = swap;
-    }
+    // if(d % 2 == 0)
+    // {
+    //     int swap = board[d - 1][d - 2];
+    //     board[d - 1][d - 3] = board[d - 1][d - 2];
+    //     board[d - 1][d - 3] = swap;
+    // }
 }
 
 /**
@@ -188,12 +184,23 @@ void init(void)
  */
 void draw(void)
 {
-    printf("Max value of board: %d\n", d * d - 1);
     for(int i = 0; i < d; i++)
     {
         for(int j = 0; j < d; j++)
         {
-            printf("  %i ", board[i][j]);
+            if (d >= 4 && board[i][j] <= 9)
+            {
+                printf(" ");
+            }
+            
+            if (board[i][j] == 0)
+            {
+                printf(" _ ");
+            }
+            else
+            {
+                printf(" %i ", board[i][j]);
+            }
         }
         printf("\n");
     }
