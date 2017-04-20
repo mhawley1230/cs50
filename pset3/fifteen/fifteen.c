@@ -207,33 +207,56 @@ void draw(void)
  */
 bool move(int tile)
 {
-    int i, j, blank;
-    for( i = 0; i < d; i++)
+    int i, j, blank, swap;
+    for(i = 0; i < d; i++)
     {
         for(j = 0; j < d; j++)
         {
-            if(blank == board[i][j])
-            {
-                blank = board[i][j];
-            }
-            
-            if(tile == board[i][j])
+            if (tile == board[i][j])
             {
                 tile = board[i][j];
+                // printf("tile found at location (%i, %i)\n", i, j);
+            }
+            if (0 == board[i][j])
+            {
+                blank = board[i][j];
+                // printf("blank found at location (%i, %i)\n", i, j);
+            }
+            if(board[i + 1][j] == 0)
+            {
+                swap = tile;
+                tile = blank;
+                blank = swap;
+                return true;
+            }
+            else if(board[i - 1][j] == blank)
+            {
+                swap = tile;
+                tile = blank;
+                blank = swap;
+                return true;
+            }
+            else if(board[i][j + 1] == blank)
+            {
+                swap = tile;
+                tile = blank;
+                blank = swap;
+                return true;
+            }
+            else if(board[i][j - 1] == blank)
+            {
+                swap = tile;
+                tile = board[i][j - 1];
+                blank = swap;
+                return true;
             }
         }
     }
-    
-    if(board[i + 1][j] == blank || board[i - 1][j] || board[i][j + 1] || board[i][j - 1])
-    {
-        int swap = tile;
-        tile = blank;
-        blank = swap;
-        return true;
-    }
-    
     return false;
 }
+
+            // search for tile
+            
 
 /**
  * Returns true if game is won (i.e., board is in winning configuration), 
