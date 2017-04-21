@@ -254,8 +254,6 @@ bool move(int tile)
     }
     return false;
 }
-
-            // search for tile
             
 
 /**
