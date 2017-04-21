@@ -36,6 +36,7 @@ void init(void);
 void draw(void);
 bool move(int tile);
 bool won(void);
+void swap(int pos1, int pos2);
 
 int main(int argc, string argv[])
 {
@@ -207,7 +208,8 @@ void draw(void)
  */
 bool move(int tile)
 {
-    int i, j, blank, swap;
+    int i, j, blank;
+    bool is_adjacent = false;
     for(i = 0; i < d; i++)
     {
         for(j = 0; j < d; j++)
@@ -215,43 +217,26 @@ bool move(int tile)
             if (tile == board[i][j])
             {
                 tile = board[i][j];
-                // printf("tile found at location (%i, %i)\n", i, j);
+                if (board[i + 1][j] == 0 || board[i - 1][j] == 0 || board[i][j + 1] == 0 || board[i][j - 1] == 0)
+                {
+                    is_adjacent = true;
+                }
             }
-            if (0 == board[i][j])
+            if (blank == board[i][j])
             {
                 blank = board[i][j];
-                // printf("blank found at location (%i, %i)\n", i, j);
-            }
-            if(board[i + 1][j] == 0)
-            {
-                swap = tile;
-                tile = blank;
-                blank = swap;
-                return true;
-            }
-            else if(board[i - 1][j] == blank)
-            {
-                swap = tile;
-                tile = blank;
-                blank = swap;
-                return true;
-            }
-            else if(board[i][j + 1] == blank)
-            {
-                swap = tile;
-                tile = blank;
-                blank = swap;
-                return true;
-            }
-            else if(board[i][j - 1] == blank)
-            {
-                swap = tile;
-                tile = board[i][j - 1];
-                blank = swap;
-                return true;
             }
         }
     }
+    
+    if (is_adjacent)
+    {
+        int swap = tile;
+        tile = blank;
+        blank = swap;
+        return true;
+    }
+    
     return false;
 }
             
