@@ -208,35 +208,57 @@ void draw(void)
  */
 bool move(int tile)
 {
-    int i, j, blank;
-    bool is_adjacent = false;
+    int i, j, swap;
+    
     for(i = 0; i < d; i++)
     {
         for(j = 0; j < d; j++)
         {
             if (tile == board[i][j])
             {
-                tile = board[i][j];
-                if (board[i + 1][j] == 0 || board[i - 1][j] == 0 || board[i][j + 1] == 0 || board[i][j - 1] == 0)
+                if (i < d - 1)
                 {
-                    is_adjacent = true;
+                    if (board[i + 1][j] == 0)
+                    {
+                        swap = tile;
+                        board[i][j] = board[i + 1][j];
+                        board[i + 1][j] = swap;
+                        return true;
+                    }
                 }
-            }
-            if (blank == board[i][j])
-            {
-                blank = board[i][j];
+                if (i > 0)
+                {
+                    if (board[i - 1][j] == 0)
+                    {
+                        swap = tile;
+                        board[i][j] = board[i - 1][j];
+                        board[i - 1][j] = swap;
+                        return true;
+                    }
+                }
+                if (j < d - 1)
+                {
+                    if (board[i][j + 1] == 0)
+                    {
+                        swap = tile;
+                        board[i][j] = board[i][j + 1];
+                        board[i][j + 1] = swap;
+                        return true;
+                    }
+                }
+                if (j > 0)
+                {
+                    if(board[i][j - 1] == 0)
+                    {
+                        swap = tile;
+                        board[i][j] = board[i][j - 1];
+                        board[i][j - 1] = swap;
+                        return true;
+                    }
+                }
             }
         }
     }
-    
-    if (is_adjacent)
-    {
-        int swap = tile;
-        tile = blank;
-        blank = swap;
-        return true;
-    }
-    
     return false;
 }
             
