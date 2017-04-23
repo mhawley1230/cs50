@@ -270,5 +270,25 @@ bool move(int tile)
 bool won(void)
 {
     // TODO
-    return false;
+    // iterate through the board
+    // count up to d * d - 1
+    // check for blank in bottom right corner
+    int count = 0;
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            count++;
+            if (count > d * d - 1)
+            {
+                count = 0;
+            }
+            
+            if (count != board[i][j])
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
