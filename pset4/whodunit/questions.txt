@@ -1,12 +1,26 @@
-1.  TODO
-2.  TODO
-3.  TODO
-4.  TODO
-5.  TODO
-6.  TODO
-7.  TODO
-8.  TODO
-9.  TODO
-10. TODO
-11. TODO
-12. TODO
+1.  What’s stdint.h?
+- A header file that contains a set of integer types having specific widths, for example int8_t is a signed integer with a width 
+of 8 bits and uint16_t is an unsigned integer with a width if 16 bits.
+2.  What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+- The point is for having them as data types to allocate a specific amount of memory from storage.
+3.  How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+- A BYTE is 8 bytes, a DWORD is 32 bytes, a LONG is 32 bytes, and a WORD is 16 bytes.
+4.  What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? Leading bytes used to identify file 
+formats (with high probability) are generally called "magic numbers."
+- In hexidecimal, it's 0x42 and 0x4d. 66 and 77 in decimal. B and M in ASCII.
+5.  What’s the difference between bfSize and biSize?
+- bfSize is the size, in bytes, of the bitmap file and biSize is the number of bytes required by the BITMAPINFOHEADER structure.
+6.  What does it mean if biHeight is negative?
+- If the biHeight is negative, the bitmap file cannot can be compressed.
+7.  What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+- biBitCount specifies bits per pixel.
+8.  Why might fopen return NULL in lines 24 and 32 of copy.c?
+If the input or output file location doesn't exist, then fopen returns NULL.
+9.  Why is the third argument to fread always 1 in our code?
+The third argument is always 1, because it denotes the number of data elements to be read.
+10. What value does line 65 of copy.c assign to padding if bi.biWidth is 3?
+- The value that would be assigned to padding is 2.
+11. What does fseek do?
+- fseek uses a given offset to change a pointer location.
+12. What is SEEK_CUR?
+- The current location of the pointer within the file.
