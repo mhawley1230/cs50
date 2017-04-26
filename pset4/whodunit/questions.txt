@@ -9,7 +9,8 @@ of 8 bits and uint16_t is an unsigned integer with a width if 16 bits.
 formats (with high probability) are generally called "magic numbers."
 - In hexidecimal, it's 0x42 and 0x4d. 66 and 77 in decimal. B and M in ASCII.
 5.  What’s the difference between bfSize and biSize?
-- bfSize is the size, in bytes, of the bitmap file and biSize is the number of bytes required by the BITMAPINFOHEADER structure.
+- bfSize is the size, in bytes, of the bitmap file and biSize is the size of the bitmap image, the BITMAPFILEHEADER, and 
+BITMAPINFOHEADER.
 6.  What does it mean if biHeight is negative?
 - If the biHeight is negative, the bitmap file cannot can be compressed.
 7.  What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
