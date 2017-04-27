@@ -15,9 +15,11 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Usage: ./resize n infile outfile\n");
         return 1;
     }
+    
+    // set resize scale
+    float resize = atof(argv[1]);
 
     // remember filenames
-    float size = atof(argv[1]);
     char *infile = argv[2];
     char *outfile = argv[3];
 
@@ -55,15 +57,21 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Unsupported file format.\n");
         return 4;
     }
+    
+    // determine padding for scanlines
+    int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    
+    // recalc biSizeImage for resizing
+    bi.biSizeImage = ((sizeof(RGBTRIPLE) * (bi.biWidth * resize) + padding) * (abs(bi.biHeight) * resize));
+    
+    // recalc bfSize for resizing
+    bf.bfSize = bi.biSizeImage + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
 
     // write outfile's BITMAPINFOHEADER
     fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outptr);
-
-    // determine padding for scanlines
-    int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
