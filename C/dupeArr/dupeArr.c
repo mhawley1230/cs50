@@ -1,7 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 
-#define ROW 2
+#define ROW 3
 #define COL 3
 #define SCALE 2
 
@@ -23,15 +23,15 @@ int main(void)
     printf("\n");
     
     
-    for (int k = 0; k < ROW; k++)
+    for (int row = 0; row < ROW; row++)
     {   
-        for (int n = 0; n < SCALE; n++)
+        for (int y = 0; y < SCALE; y++)
         {
-            for (int l = 0; l < COL; l++)
+            for (int col = 0; col < COL; col++)
             {
-                for (int m = 0; m < SCALE; m++)
+                for (int x = 0; x < SCALE; x++)
                 {
-                    printf(" %i ", arr[k][l]);
+                    printf(" %i ", arr[row][col]);
                 }
             }
             printf("\n");
