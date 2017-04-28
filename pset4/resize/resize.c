@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
     int paddingOut = (4 - (biOut.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
     
     // scale header size for output file
-    biOut.biSizeImage = ((sizeof(RGBTRIPLE) * biOut.biWidth) + paddingOut) * biOut.biHeight;
+    biOut.biSizeImage = ((sizeof(RGBTRIPLE) * biOut.biWidth) + paddingOut) * abs(biOut.biHeight);
     bfOut.bfSize = biOut.biSizeImage + sizeof(bfOut) + sizeof(biOut);
 
     // write outfile's BITMAPFILEHEADER
@@ -96,6 +96,7 @@ int main(int argc, char *argv[])
     
                 // read RGB triple from infile
                 fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
+                
                 for (int col = 0; col < scale; col++)
                 {
                     // write RGB triple to outfile
