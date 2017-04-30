@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     
     // scale header size for output file
     biOut.biSizeImage = ((sizeof(RGBTRIPLE) * biOut.biWidth) + paddingOut) * abs(biOut.biHeight);
-    bfOut.bfSize = biOut.biSizeImage + sizeof(bfOut) + sizeof(biOut);
+    bfOut.bfSize = bf.bfSize - bi.biSizeImage + biOut.biSizeImage;
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&bfOut, sizeof(BITMAPFILEHEADER), 1, outptr);
@@ -104,15 +104,21 @@ int main(int argc, char *argv[])
                 }
             }
     
-            // skip over padding, if any
-            fseek(inptr, padding, SEEK_CUR);
-    
             // then add it back (to demonstrate how)
-            for (int k = 0; k < padding; k++)
+            for (int k = 0; k < paddingOut; k++)
             {
                 fputc(0x00, outptr);
             }
-        }
+            
+            // return to beginning of scanline
+            if (row < scale - 1)
+            {
+                fseek(inptr, -bi.biWidth * sizeof(RGBTRIPLE), SEEK_CUR);
+            }
+		}
+		
+        // skip over padding, if any
+        fseek(inptr, padding, SEEK_CUR);
     }
 
     // close infile
