@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     
-    char *infile = argv[1]; 
+    char *infile = argv[1];
     FILE *inptr = fopen(infile, "r");
     if (inptr == NULL)
     {
