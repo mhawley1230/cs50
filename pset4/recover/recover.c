@@ -1,5 +1,5 @@
-#include <cs50.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 int main(int argc, char *argv[])
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
             // jpgfound = true;
         }
     }
-    // printf("%i jpgs found\n", jpgcount);
+    printf("%i jpgs found\n", jpgcount);
 
     return 0;
 }
