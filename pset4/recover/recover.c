@@ -12,22 +12,26 @@ int main(int argc, char *argv[])
     }
     
     // error
-    char *infile = argv[1];
-    FILE *inptr = fopen(infile, "r");
-    if (inptr == NULL)
+    FILE *file = fopen(argv[1], "r");
+    if (file == NULL)
     {
-        fprintf(stderr, "Could not open %s.\n", infile);
+        fprintf(stderr, "Could not open %s.\n", argv[1]);
         return 2;
     }
     
-    int *buffer[512];
-    // int count = 0;
-    while(fread(buffer, 1, 512, inptr))
-    {
-        fread(buffer, 1, 512, inptr);
-        // count++;
-        // printf("%i, block(s) of size 512 found\n", count);
+    uint8_t buffer[512];
+    int jpgcount = 0;
+    // bool jpgfound = false;
+    
+    while(fread(buffer, 512, 1, file) == 1)
+    {   
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
+        {
+            jpgcount++;
+            // jpgfound = true;
+        }
     }
+    // printf("%i jpgs found\n", jpgcount);
 
     return 0;
 }
