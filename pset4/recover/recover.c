@@ -20,10 +20,13 @@ int main(int argc, char *argv[])
         return 2;
     }
     
-    char *buffer = NULL;
-    while(fread(buffer, 1, 512, argv[1]))
+    int *buffer[512];
+    // int count = 0;
+    while(fread(buffer, 1, 512, inptr))
     {
-        printf("block of size 512 found");
+        fread(buffer, 1, 512, inptr);
+        // count++;
+        // printf("%i, block(s) of size 512 found\n", count);
     }
 
     return 0;
