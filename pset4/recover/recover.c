@@ -1,3 +1,4 @@
+#include <cs50.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -20,18 +21,40 @@ int main(int argc, char *argv[])
     }
     
     uint8_t buffer[512];
+    FILE *pic = NULL;
+    char name[8];
     int jpgcount = 0;
-    // bool jpgfound = false;
+    bool jpgfound = false;
     
     while(fread(buffer, 512, 1, file) == 1)
     {   
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
+            if (pic != NULL)
+            {
+                fclose(pic);
+            }
+            
+            sprintf(name, "%03i.jpg", jpgcount);
+            pic = fopen(name, "w");
+            jpgfound = true;
+            fwrite(buffer, 512, 1, pic);
             jpgcount++;
-            // jpgfound = true;
+        }
+        else
+        {
+            if (jpgfound)
+            {
+                fwrite(buffer, 512, 1, pic);
+            }
+            else
+            {
+                jpgfound = false;
+            }
         }
     }
-    printf("%i jpgs found\n", jpgcount);
+    
+    fclose(pic);
 
     return 0;
 }
