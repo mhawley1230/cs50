@@ -3,7 +3,8 @@
 also use it as an upper limit on word length.
 1.  According to its man page, what does getrusage do?
 - Getrusage is a function that returns usage measurements for called processes.
-2.  TODO
+2.  Per that same man page, how many members are in a variable of type struct rusage?
+- There are 16 members in a variable of type struct rusage, several of which are unmaintained on Linux.
 3.  TODO
 4.  TODO
 5.  TODO
