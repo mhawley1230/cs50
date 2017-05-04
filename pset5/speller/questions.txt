@@ -1,6 +1,8 @@
 0.  What is pneumonoultramicroscopicsilicovolcanoconiosis?
-- Pneumonoultramicroscopicsilicovolcanoconiosis is a pneumoconiosis caused by inhalation of very fine silicate or quartz dust.
-1.  TODO
+- Pneumonoultramicroscopicsilicovolcanoconiosis is a pneumoconiosis caused by inhalation of very fine silicate or quartz dust. We
+also use it as an upper limit on word length.
+1.  According to its man page, what does getrusage do?
+- Getrusage is a function that returns usage measurements for called processes.
 2.  TODO
 3.  TODO
 4.  TODO
