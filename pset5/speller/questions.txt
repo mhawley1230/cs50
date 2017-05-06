@@ -1,14 +1,18 @@
 0.  What is pneumonoultramicroscopicsilicovolcanoconiosis?
 - Pneumonoultramicroscopicsilicovolcanoconiosis is a pneumoconiosis caused by inhalation of very fine silicate or quartz dust. We
 also use it as an upper limit on word length.
+
 1.  According to its man page, what does getrusage do?
 - Getrusage is a function that returns usage measurements for called processes.
+
 2.  Per that same man page, how many members are in a variable of type struct rusage?
 - There are 16 members in a variable of type struct rusage, several of which are unmaintained on Linux.
+
 3.  Why do you think we pass before and after by reference (instead of by value) to calculate, even though we’re not changing their 
 contents?
 - Calculate returns the number of seconds that it takes to run "before" and "after", so we get to caluculate different runtimes,
 when the pointers to "before" and "after" change.
+
 4.  Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, 
 convince us that you indeed understand how that function’s for loop works.
 - As the for loop is using a pointer through the file, the length of each word is found by the fgetc function. The first if statement 
@@ -17,7 +21,12 @@ ignoring strings too long to be words and finally preparing for a new word by se
 conditional ignores words with numbers, and the last branch looks for a null string character, increments the word counter, and uses 
 the dictionary to check for spelling while incrementing the calculation of the amount of resources used while referencing the 
 dictionary. If the word is indeed misspelled, the word is printed and a misspelled word counter increases.
-5.  hy do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" 
+
+5.  Why do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" 
 to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
-- The problems that might arise from
-6.  TODO
+- The problems that might arise from using fscanf to looks at multiple words as opposed to fgetc to look at each individual word 
+because fscanf is much less precise than fgetc, the punctuation at the end of words will be seen as a part of the word.
+
+6.  Why do you think we declared the parameters for check and load as const (which means "constant")?
+-  we declared the parameters for check and load as const's because the words for check aren't going to change and neither are the 
+dictionary files themselves, so we can set the files as constants.
