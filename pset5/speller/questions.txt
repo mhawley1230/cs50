@@ -11,6 +11,7 @@ contents?
 when the pointers to "before" and "after" change.
 4.  Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, 
 convince us that you indeed understand how that function’s for loop works.
-- 
+-  
+
 5.  TODO
 6.  TODO
