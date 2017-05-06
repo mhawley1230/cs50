@@ -11,7 +11,13 @@ contents?
 when the pointers to "before" and "after" change.
 4.  Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, 
 convince us that you indeed understand how that function’s for loop works.
--  
-
-5.  TODO
+- As the for loop is using a pointer through the file, the length of each word is found by the fgetc function. The first if statement 
+checks for words with alphabetical characters and apostrophes. Then the post-apostrophe characters are appended to the word while 
+ignoring strings too long to be words and finally preparing for a new word by setting the word index to 0. The next branch in the 
+conditional ignores words with numbers, and the last branch looks for a null string character, increments the word counter, and uses 
+the dictionary to check for spelling while incrementing the calculation of the amount of resources used while referencing the 
+dictionary. If the word is indeed misspelled, the word is printed and a misspelled word counter increases.
+5.  hy do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" 
+to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
+- The problems that might arise from
 6.  TODO
