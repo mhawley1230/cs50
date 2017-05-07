@@ -11,6 +11,14 @@
 // (e.g., pneumonoultramicroscopicsilicovolcanoconiosis)
 #define LENGTH 45
 
+// define our linked list data structure
+typedef struct node {
+   int data;
+   int key;
+   struct node *next;
+}
+node;
+
 /**
  * Returns true if word is in dictionary else false.
  */
