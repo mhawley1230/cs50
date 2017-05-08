@@ -39,27 +39,38 @@ int main(void)
     // new node's data
     another->data = 7;
     
-    // // set first node to point to new node
-    // list->next = another;
+    // set first node to point to new node
+    list->next = another;
     
     // // change what current is pointing at, while still keeping track of head
     // current = current->next;
     
-    printf("head node's value is %d\n", head->data);
-    printf("element 1's value is %d\n", current->data);
+    // printf("head node's value is %d\n", head->data);
+    // printf("element 1's value is %d\n", current->data);
     
     // search for an element
     if (search(list, 7))
     {
-        printf("element found");
+        printf("element found\n");
     }
     else
     {
-        printf("element not found");
+        printf("element not found\n");
     }
 }
 
-bool search(node* head, int val);
+bool search(node* node, int val)
 {
-    
+    while (node != NULL)
+    {
+        if (node->data == val)
+        {
+            return true;
+        }
+        else
+        {
+            node = node->next;
+        }
+    }
+    return false;
 }
