@@ -2,7 +2,9 @@
  * Implements a dictionary's functionality.
  */
 
+#include <stdio.h>
 #include <stdbool.h>
+#include <cs50.h>
 
 #include "dictionary.h"
 
@@ -20,7 +22,20 @@ bool check(const char *word)
  */
 bool load(const char *dictionary)
 {
-    // TODO
+    FILE *file = fopen(dictionary, "r");
+    char word[LENGTH];
+    
+    if (file == NULL)
+    {
+        fprintf(stderr, "Could not open file.\n");
+        return 1;
+    }
+    
+    while (fscanf(file, "%s", word) != EOF)
+    {
+        printf("%s\n", word);
+    }
+    
     return false;
 }
 
