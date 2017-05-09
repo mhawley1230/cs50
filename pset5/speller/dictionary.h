@@ -13,7 +13,7 @@
 
 // define our linked list data structure
 typedef struct node {
-   char *data;
+   char word[LENGTH + 1];
    struct node *next;
 }
 node;

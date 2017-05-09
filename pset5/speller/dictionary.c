@@ -5,8 +5,12 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <cs50.h>
+#include <string.h>
 
 #include "dictionary.h"
+
+// global variables
+struct node *head = NULL;
 
 /**
  * Returns true if word is in dictionary else false.
@@ -22,18 +26,26 @@ bool check(const char *word)
  */
 bool load(const char *dictionary)
 {
+    char current_word[LENGTH + 1];
+    // open dictionary
     FILE *file = fopen(dictionary, "r");
-    char word[LENGTH];
     
-    if (file == NULL)
-    {
-        fprintf(stderr, "Could not open file.\n");
-        return 1;
-    }
+    // first node pointer for head of linked list
+    struct node *first = malloc(sizeof(node));
+    head = first;
     
-    while (fscanf(file, "%s", word) != EOF)
+    while (fscanf(file, "%s", current_word) != EOF)
     {
-        printf("%s\n", word);
+        // malloc new node
+        struct node *new_node = malloc(sizeof(node));
+        
+        // copy word to node
+        strcpy(new_node->word, current_word);
+        
+        // append to beginning of list
+        new_node->next = head;
+        head = new_node;
+        printf("%s\n", new_node -> word);
     }
     
     return false;
