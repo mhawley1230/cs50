@@ -38,6 +38,10 @@ bool load(const char *dictionary)
     {
         // malloc new node
         struct node *new_node = malloc(sizeof(node));
+        if (new_node == NULL)
+        {
+            return false;
+        }
         
         // copy word to node
         strcpy(new_node->word, current_word);
@@ -45,10 +49,10 @@ bool load(const char *dictionary)
         // append to beginning of list
         new_node->next = head;
         head = new_node;
-        printf("%s\n", new_node -> word);
+        // printf("%s\n", new_node -> word);
     }
     
-    return false;
+    return true;
 }
 
 /**
