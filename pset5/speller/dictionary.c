@@ -17,7 +17,22 @@ struct node *head = NULL;
  */
 bool check(const char *word)
 {
-    // TODO
+    // create a node pointer pointing at the first element in the list
+    struct node *ptr = malloc(sizeof(struct node));
+    ptr = head;
+    
+    while (ptr != NULL)
+    {
+        if (ptr->word == word)
+        {
+            return true;
+        }
+        else
+        {
+            ptr = ptr -> next;
+        }
+    }
+    
     return false;
 }
 
