@@ -64,7 +64,6 @@ bool load(const char *dictionary)
             return false;
         }
         
-        // printf("%d\n", (int)current_word[0] - 97);
         // create index of hash table based on first letter of current_word
         int index = (int)current_word[0] - 97;
         
@@ -75,7 +74,7 @@ bool load(const char *dictionary)
         
         // append to beginning of list
         new_node->next = head;
-        head = new_node;    
+        head = new_node;
     }
     
     return true;
