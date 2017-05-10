@@ -11,6 +11,9 @@
 // (e.g., pneumonoultramicroscopicsilicovolcanoconiosis)
 #define LENGTH 45
 
+// length of the alphabet
+#define ALPHA 26
+
 // define our linked list data structure
 typedef struct node {
    char word[LENGTH + 1];
