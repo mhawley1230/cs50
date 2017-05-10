@@ -10,6 +10,7 @@
 #include "dictionary.h"
 
 // global variables
+struct node *alpha[ALPHA];
 struct node *head = NULL;
 struct node *current = NULL;
 
@@ -42,38 +43,40 @@ bool check(const char *word)
  */
 bool load(const char *dictionary)
 {
-    struct node alpha[ALPHA];
-    // char current_word[LENGTH + 1];
+    char current_word[LENGTH + 1];
     
     // open dictionary
-    // FILE *file = fopen(dictionary, "r");
+    FILE *file = fopen(dictionary, "r");
     
     for (int i = 0; i < ALPHA; i++)
     {
         // load hash table with first elements in linked lists
         struct node *first = malloc(sizeof(node));
-        alpha[i] = *first;
+        alpha[i] = first;
     }
-
-    // head = first;
     
-    // while (fscanf(file, "%s", current_word) != EOF)
-    // {
-    //     // malloc new node
-    //     struct node *new_node = malloc(sizeof(node));
-    //     if (new_node == NULL)
-    //     {
-    //         return false;
-    //     }
+    while (fscanf(file, "%s", current_word) != EOF)
+    {
+        // malloc new node
+        struct node *new_node = malloc(sizeof(node));
+        if (new_node == NULL)
+        {
+            return false;
+        }
         
-    //     // copy word to node
-    //     strcpy(new_node->word, current_word);
+        // printf("%d\n", (int)current_word[0] - 97);
+        // create index of hash table based on first letter of current_word
+        int index = (int)current_word[0] - 97;
         
-    //     // append to beginning of list
-    //     new_node->next = head;
-    //     head = new_node;
-    //     // printf("%s\n", new_node -> word);
-    // }
+        head = alpha[index];
+        
+        // copy word to node
+        strcpy(new_node->word, current_word);
+        
+        // append to beginning of list
+        new_node->next = head;
+        head = new_node;    
+    }
     
     return true;
 }
