@@ -1,0 +1,128 @@
+---
+swagger: "2.0"
+info:
+  description: "post and pull employees from the DB"
+  version: "1.0.1"
+  title: "HR API"
+host: "virtserver.swaggerhub.com"
+basePath: "/SmartBear_Software/HRAPI_2.1/1.0.1"
+schemes:
+- "https"
+paths:
+  /users:
+    get:
+      description: "Allows users to get employees"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/inline_response_200"
+    post:
+      description: "Allows users to submit user data to the DB"
+      parameters:
+      - in: "body"
+        name: "employee"
+        description: "Creates a new employee in DB"
+        required: false
+        schema:
+          $ref: "#/definitions/employee_1"
+      responses:
+        200:
+          description: "resource successfully added"
+          schema:
+            $ref: "#/definitions/inline_response_200_1"
+    put:
+      description: "Allows users to update user data to the DB"
+      parameters:
+      - in: "body"
+        name: "employee"
+        description: "Updates an employee in DB"
+        required: false
+        schema:
+          $ref: "#/definitions/employee"
+      responses:
+        200:
+          description: "resource successfully added"
+          schema:
+            $ref: "#/definitions/inline_response_200_1"
+definitions:
+  employee_1:
+    type: "object"
+    required:
+    - "email"
+    properties:
+      userUUid:
+        type: "string"
+        format: "uuid"
+        example: "113a3d8d-ddac-4b0f-9f16-15123512"
+        description: "ID from DB"
+      email:
+        type: "string"
+        format: "email"
+        example: "michael.hawley@smartbear.com"
+        description: "user email from DB"
+      firstName:
+        type: "string"
+        example: "michael"
+        description: "users first name"
+      lastName:
+        type: "string"
+        example: "hawley"
+  inline_response_200_1:
+    properties:
+      status:
+        type: "integer"
+        example: 200
+        description: "status code"
+      message:
+        type: "string"
+        example: "resource successfully added"
+        description: "success message"
+  inline_response_200:
+    required:
+    - "email"
+    - "firstName"
+    - "lastName"
+    - "userUUid"
+    properties:
+      userUUid:
+        type: "string"
+        format: "uuid"
+        example: "113a3d8d-ddac-4b0f-9f16-15123512"
+        description: "ID from DB"
+      email:
+        type: "string"
+        format: "email"
+        example: "michael.hawley@smartbear.com"
+        description: "user email from DB"
+      firstName:
+        type: "string"
+        example: "michael"
+        description: "users first name"
+      lastName:
+        type: "string"
+        example: "hawley"
+        description: "users last name"
+  employee:
+    type: "object"
+    required:
+    - "email"
+    properties:
+      userUUid:
+        type: "string"
+        format: "uuid"
+        example: "113a3d8d-ddac-4b0f-9f16-15123512"
+        description: "ID from DB"
+      email:
+        type: "string"
+        format: "email"
+        example: "michael.hawley@smartbear.com"
+        description: "user email from DB"
+      firstName:
+        type: "string"
+        example: "michael"
+        description: "users first name"
+      lastName:
+        type: "string"
+        example: "hawley"
